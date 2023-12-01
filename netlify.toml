@@ -5,6 +5,10 @@ command = "npm install"
 [dev]
 functions = "netlify/functions"
 
+[functions]
+external_node_modules = ["express", "geoip-lite"]
+node_bundler = "esbuild"
+
 [[redirects]]
 force = true
 from = "/api/*"
