@@ -10,7 +10,7 @@ document.getElementById('search').onclick = () => {
     setData(ipDom.value)
 }
 function getData(ip) {
-    let url = `${location.origin}/api/ip?ip=${ip}`
+    let url = ip ? `${location.origin}/api/ip?ip=${ip}` : `${location.origin}/api/ip`
     return new Promise((resolve, reject) => {
         fetch(url)
             .then(response => response.json())

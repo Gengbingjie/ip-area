@@ -21,7 +21,6 @@ app.use("/api/", router.get('/ip', (req, res) => {
         }
         ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length);
     }
-    console.log(ip)
     info = geoip.lookup(ip)
     if (!info) {
         info = {
@@ -31,7 +30,6 @@ app.use("/api/", router.get('/ip', (req, res) => {
     } else {
         info.ip = ip
     }
-    console.log(info)
     res.send(info)
 }));
 
