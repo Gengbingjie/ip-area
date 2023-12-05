@@ -7,16 +7,32 @@ const app = express();
 
 const router = Router();
 
-app.use("/api/", router.get('/', (req, res) => {
-    let ip: string = req.headers['x-forwarded-for']?.toString() ||
-        req.ip ||
-        req.socket.remoteAddress || '';
-    if (ip.split(',').length > 0) {
-        ip = ip.split(',')[0]
+app.use("/api/", router.get('/ip', (req, res) => {
+    let ip: string
+    let info: object
+    if (req.query.ip) {
+        ip = req.query.ip.toString()
+    } else {
+        ip = req.headers['x-forwarded-for']?.toString() ||
+            req.ip ||
+            req.socket.remoteAddress || '';
+        if (ip.split(',').length > 0) {
+            ip = ip.split(',')[0]
+        }
+        ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length);
     }
-    ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length);
-    let area = geoip.lookup(ip)
-    res.send(res.json(area))
+    console.log(ip)
+    info = geoip.lookup(ip)
+    if (!info) {
+        info = {
+            ip: ip,
+            region: null
+        }
+    } else {
+        info.ip = ip
+    }
+    console.log(info)
+    res.send(info)
 }));
 
 export const handler = serverless(app);

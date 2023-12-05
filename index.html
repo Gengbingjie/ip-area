@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .area-wrap div {
+            display: flex;
+            align-items: flex-start;
+            align-items: center;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>地域查询</h1>
+        <div class="ip-wrap">
+            <input id="ip" value="" />
+            <button id="search">搜索</button>
+        </div>
+        <div class="area-wrap">
+            <div>
+                <label>国家：</label>
+                <p id="country">Null</p>
+            </div>
+            <div>
+                <label>地区：</label>
+                <p id="region">Null</p>
+            </div>
+            <div>
+                <label>城市：</label>
+                <p id="city">Null</p>
+            </div>
+            <div>
+                <label>时区：</label>
+                <p id="timezone">Null</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="js/main.js"></script>
