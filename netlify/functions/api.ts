@@ -9,7 +9,7 @@ const router = Router();
 
 app.use("/api/", router.get('/ip', (req, res) => {
     let ip: string
-    let info: object
+    let info: object = {}
     if (req.query.ip) {
         ip = req.query.ip.toString()
     } else {
@@ -21,14 +21,14 @@ app.use("/api/", router.get('/ip', (req, res) => {
         }
         ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length);
     }
-    info = geoip.lookup(ip)
-    if (!info) {
+    info = geoip.lookup(ip) as object
+    if (!Object.keys(info).length) {
         info = {
             ip: ip,
             region: null
         }
     } else {
-        info.ip = ip
+        info['ip'] = ip
     }
     res.send(info)
 }));
